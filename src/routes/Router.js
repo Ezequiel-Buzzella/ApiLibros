@@ -1,13 +1,20 @@
-const express = require('express')
+const express = require('express');
 const router = express.Router();
 const librosController = require('../controllers/LibrosController');
 
-router.get('/',librosController.getLibros)
-router.get('/:id',librosController.getLibroById);
-router.post('/',librosController.agregarLibro)
-router.put('/:id',librosController.editarLibro);
-router.delete('/:id',librosController.deleteLibro);
+// Obtener todos los libros
+router.get('/', librosController.getLibros);
 
+// Obtener libro por id
+router.get('/:id', librosController.getLibroById);
 
+// Agregar un libro
+router.post('/', librosController.agregarLibro);
 
-module.exports=router;
+// Editar libro
+router.put('/:id', librosController.editarLibro);
+
+// Eliminar libro
+router.delete('/:id', librosController.deleteLibro);
+
+module.exports = router;

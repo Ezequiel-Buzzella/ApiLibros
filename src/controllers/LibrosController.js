@@ -34,16 +34,17 @@ module.exports={
         })
     },
 
-    agregarLibro:(req,res)=>{
-        const{titulo, autor, descripcion} = req.body;
+    agregarLibro: (req, res) => {
+      const { titulo, autor, descripcion } = req.body;
 
-        librosModel.agregarLibro(titulo, autor, descripcion, (err,result)=>{
-            if(err){
-                res.status(500).json({error:err.message})
-                return
-            }
-            res.status(201).json({message:'Libro creado correctamente',data: {IdInsertado:result}})
-        })
+      librosModel.agregarLibro(titulo, autor, descripcion, (err, result) => {
+        if (err) {
+          res.status(500).json({ error: err.message });
+          return;
+        }
+        // Redirige al home después de agregar el libro
+        res.redirect('/home'); // Redirigir a la página de inicio después de agregar el libro
+      });
     },
 
     editarLibro:(req,res)=>{

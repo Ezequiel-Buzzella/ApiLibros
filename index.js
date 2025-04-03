@@ -12,7 +12,7 @@ const port = 3000;
 
 app.use(bodyParser.json());
 
-
+app.use(bodyParser.urlencoded({extended:true}));
 
 app.set('view engine','pug');
 app.set('views',path.join(__dirname,'src/views'));
@@ -37,4 +37,24 @@ app.get('/home', async (req,res)=>{
         console.error("Error al obtener los libros",error);
         res.render('index', { title: "APILibros", message: "Error al cargar los libros", libros: [] });
     }
+});
+app.get('/agregarLibro', (req, res) => {
+  res.render('agregarLibro', { message: 'Añadir un libro nuevo' });
+});
+
+app.post('/api/libros',(req,res) =>{
+  const {titulo,autor,descripcion}=req.body;
+  console.log>("Datos recibidos",req.body);
+
+  if(titulo && autor && descripcion){
+    librosModel.agregarLibro(titulo,autor,descripcion,(err,result) =>{
+      if(err){
+        res.status(500).json({error:err.message});
+        return;
+      }
+      res.redirect('/home');
+    });
+  }else{
+    res.status(400).json({message:"Faltan datos"});
+  }
 });
