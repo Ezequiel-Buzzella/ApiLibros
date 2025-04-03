@@ -1,0 +1,19 @@
+extends header.pug
+
+block content
+  h1= message
+
+  form(action='/api/libros', method='POST')
+    input(type='hidden', name='id', value=libro.id)
+    // ID oculto del libro
+    div
+      label(for='titulo') Título:
+      input(type='text', name='titulo', value=libro.titulo)
+    div
+      label(for='autor') Autor:
+      input(type='text', name='autor', value=libro.autor)
+    div
+      label(for='descripcion') Descripción:
+      textarea(name='descripcion')= libro.descripcion
+    div
+      button(type='submit') Actualizar

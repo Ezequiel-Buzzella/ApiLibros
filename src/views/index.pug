@@ -11,9 +11,13 @@ block content
         th(scope="col") Titulo
         th(scope="col") Autor
         th(scope="col") Descripcion
+        th(scope="col") Acciones
     tbody
       each libro in libros
         tr
           td= libro.titulo
           td= libro.autor
           td= libro.descripcion
+          td
+            // Enlace para editar el libro
+            a(href=`/editarLibro/${libro.id}`) Editar

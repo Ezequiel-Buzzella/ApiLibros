@@ -12,19 +12,19 @@ class LibrosModel {
   }
 
   agregarLibro(titulo, autor, descripcion, callback) {
-    const sql = "INSERT INTO libros(titulo,autor,descripcion) VALUES(?,?,?)";
-    db.query(sql, [titulo, autor, descripcion], callback, (err, result) => {
+    const sql = "INSERT INTO libros(titulo, autor, descripcion) VALUES(?, ?, ?)";
+    db.query(sql, [titulo, autor, descripcion], (err, result) => {
       if (err) {
-        return callback(err, null);
+        return callback(err, null); // En caso de error, devuelve el error como primer parámetro
       }
-
-      callback(null, result.insertedId);
+      callback(null, result.insertId);  // Aquí usamos `insertId` correctamente
     });
   }
 
   updateLibro(id, titulo, autor, descripcion, callback) {
     const sql = "UPDATE libros SET titulo=?,autor=?,descripcion=? WHERE id=?";
     db.query(sql, [titulo, autor, descripcion,id], callback);
+
   }
 
   deleteLibro(id, callback) {
