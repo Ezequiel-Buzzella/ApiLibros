@@ -1,19 +1,15 @@
-extends header.pug
+form(action=`/api/libros/${libro.id}?_method=PUT`, method="POST", style="display:inline")
+  div
+    label(for='titulo') Título:
+    input(type='text', name='titulo', value=libro.titulo)
 
-block content
-  h1= message
+  div
+    label(for='autor') Autor:
+    input(type='text', name='autor', value=libro.autor)
 
-  form(action='/api/libros', method='POST')
-    input(type='hidden', name='id', value=libro.id)
-    // ID oculto del libro
-    div
-      label(for='titulo') Título:
-      input(type='text', name='titulo', value=libro.titulo)
-    div
-      label(for='autor') Autor:
-      input(type='text', name='autor', value=libro.autor)
-    div
-      label(for='descripcion') Descripción:
-      textarea(name='descripcion')= libro.descripcion
-    div
-      button(type='submit') Actualizar
+  div
+    label(for='descripcion') Descripción:
+    textarea(name='descripcion')= libro.descripcion
+
+  div
+    button(type='submit') Actualizar

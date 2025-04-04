@@ -21,3 +21,6 @@ block content
           td
             // Enlace para editar el libro
             a(href=`/editarLibro/${libro.id}`) Editar
+            // Botón para eliminar el libro
+            form(action=`/api/libros/${libro.id}?_method=DELETE`, method="POST", style="display:inline")
+              button(type="submit") Eliminar

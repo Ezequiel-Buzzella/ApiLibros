@@ -11,9 +11,8 @@ router.get('/:id', librosController.getLibroById);
 // Agregar un libro
 router.post('/', librosController.agregarLibro);
 
-// Editar libro
-router.put('/:id', librosController.editarLibro);
-
+// El router maneja PUT en '/api/libros/:id'
+router.put('/:id', librosController.editarLibro);  // Asegúrate de que `editarLibro` esté definido en el controlador
 // Eliminar libro
 router.delete('/:id', librosController.deleteLibro);
 
